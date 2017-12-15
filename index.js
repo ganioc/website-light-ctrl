@@ -27,62 +27,62 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.get("/", (req,res)=>{
+app.get("/", (req, res) => {
     // res.type("text/plain");
     // res.send("home page");
     //console.log(req.session.username);
-    if(req.session.normalId === undefined){
-	res.render("home", {title: "not a user"});
-    }else{
-	res.render("home", {title: "主页" });
+    if (req.session.normalId === undefined) {
+        res.render("home-visitor", { title: "未登录" });
+    } else {
+        res.render("home", { title: "主页" });
     }
 });
 
-app.get("/login", (req,res)=>{
+app.get("/login", (req, res) => {
     // res.type("text/plain");
     // res.send("login page");
-    res.render("elogin",{title:"登录"});
+    res.render("elogin", { title: "登录" });
 });
 
-app.get("/logout",(req,res)=>{
-    if(req.session.normalId){
-	delete req.session.normalId;
+app.get("/logout", (req, res) => {
+    if (req.session.normalId) {
+        delete req.session.normalId;
     }
     res.redirect("/login");
 });
 
-app.get("/error", (req,res)=>{
+app.get("/error", (req, res) => {
     // res.type("text/plain");
     // res.send("error page");
-    res.render("eerror", {title:"错误"});
+    res.render("eerror", { title: "错误" });
 });
 
-app.post("/login",function(req, res){
+app.post("/login", function (req, res) {
     //console.log(req);
     console.log(req.body);
 
     var bCheck = credentials.checkAuth(req.body.user, req.body.pass);
-    
-    if(bCheck === 1){
-	req.session.normalId = credentials.normalId;
-	res.redirect("/");
-    }else if(bCheck === 2){
-	req.session.normalId = credentials.adminId;
-	res.redirect("/");
-    }else{
-	delete req.session.normalId;
-	res.redirect("/error");
+
+    if (bCheck === 1) {
+        req.session.normalId = credentials.normalId;
+        res.redirect("/");
+    } else if (bCheck === 2) {
+        req.session.normalId = credentials.adminId;
+        res.redirect("/");
+    } else {
+        delete req.session.normalId;
+        res.redirect("/error");
     }
 });
 
-app.use((req,res)=>{
+app.use((req, res) => {
     res.type("text/plain");
     res.status(404);
     //res.send("404");
     res.render("404");
 });
 
-app.use((err,req,res,next)=>{
+app.use((err, req, res, next) => {
     console.error(err.stack);
     res.type("text/plain");
     res.status(500);
@@ -90,8 +90,8 @@ app.use((err,req,res,next)=>{
     res.render("500");
 });
 
-app.listen(8080, "0.0.0.0", ()=>{
-    console.log("Server started on port: 8080" );    
+app.listen(8080, "0.0.0.0", () => {
+    console.log("Server started on port: 8080");
 });
 
 
