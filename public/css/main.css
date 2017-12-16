@@ -30,8 +30,13 @@ body {
 /* Custom page footer */
 .footer {
   padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5; }
+  padding-bottom: 19px;
+  border-top: 1px solid #e5e5e5;
+  background-color: #0c63b9;
+  width: 100%;
+  font-weight: lighter;
+  color: white;
+  margin-top: 4em; }
 
 /* Customize container */
 @media (min-width: 768px) {
@@ -109,3 +114,14 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0; }
+
+.footerHeader {
+  width: 100%;
+  padding: 1em;
+  background-color: #597ca0;
+  text-align: center;
+  color: white;
+  margin-bottom: 1em; }
+
+.footer-endline {
+  text-align: right; }

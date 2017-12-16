@@ -48,7 +48,7 @@ app.get("/logout", (req, res) => {
     if (req.session.normalId) {
         delete req.session.normalId;
     }
-    res.redirect("/login");
+    res.redirect("/");
 });
 
 app.get("/error", (req, res) => {
@@ -76,18 +76,16 @@ app.post("/login", function (req, res) {
 });
 
 app.use((req, res) => {
-    res.type("text/plain");
     res.status(404);
     //res.send("404");
-    res.render("404");
+    res.render("404", { title: "404 not found" });
 });
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.type("text/plain");
     res.status(500);
     //res.send("500");
-    res.render("500");
+    res.render("500", { title: "500 server error" });
 });
 
 app.listen(8080, "0.0.0.0", () => {
