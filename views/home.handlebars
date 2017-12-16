@@ -13,9 +13,9 @@
     <h1>孵化器灯控</h1>
     <p class="lead">Light Control Interface</p>
     <p>
-      <a class="btn  btn-block btn-danger" href="#">全关 Off</a>
-      <a class="btn  btn-block btn-success" href="#">全开 On</a>
-      <a class="btn  btn-block btn-info" href="#">查询 Query</a>
+      <a class="btn  btn-block btn-danger" id="btnOff" href="#">全关 Off</a>
+      <a class="btn  btn-block btn-success" id="btnOn" href="#">全开 On</a>
+      <a class="btn  btn-block btn-info" id="btnQuery" href="#">查询 Query</a>
     </p>
   </div>
   <div class="row marketing">
@@ -40,6 +40,27 @@
     </div>
   </div>
 
+</div>
+
+<div id="dlgModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">状态</h5>
+        <button id="dlgModal-close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="dlgModal-body" class="modal-body">
+        <p>Processing ... ...</p>
+      </div>
+      <div class="modal-footer">
+        {{!--
+        <button type="button" class="btn btn-primary">OK</button> --}}
+        <button id="dlgModal-cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="/js/jquery.js"></script>
