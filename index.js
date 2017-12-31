@@ -5,6 +5,7 @@ var credentials = require('./lib/credentials.js');
 var bodyParser = require("body-parser");
 
 var app = express();
+var mqttBg = require('./lib/mqtt-bg.js');
 
 handlebars = handlebars.create({
     defaultLayout: "main"
@@ -32,16 +33,22 @@ app.get("/", (req, res) => {
     // res.send("home page");
     //console.log(req.session.username);
     if (req.session.normalId === undefined) {
-        res.render("home-visitor", { title: "未登录" });
+        res.render("home-visitor", {
+            title: "未登录"
+        });
     } else {
-        res.render("home", { title: "主页" });
+        res.render("home", {
+            title: "主页"
+        });
     }
 });
 
 app.get("/login", (req, res) => {
     // res.type("text/plain");
     // res.send("login page");
-    res.render("elogin", { title: "登录" });
+    res.render("elogin", {
+        title: "登录"
+    });
 });
 
 app.get("/logout", (req, res) => {
@@ -54,7 +61,9 @@ app.get("/logout", (req, res) => {
 app.get("/error", (req, res) => {
     // res.type("text/plain");
     // res.send("error page");
-    res.render("eerror", { title: "错误" });
+    res.render("eerror", {
+        title: "错误"
+    });
 });
 
 app.post("/login", function (req, res) {
@@ -74,25 +83,33 @@ app.post("/login", function (req, res) {
         res.redirect("/error");
     }
 });
+app.post("/ctrl", function (req, res) {
+    console.log(req.body);
+
+    res.json({
+        name: "try it"
+    });
+
+    mqttBg.sayHello();
+});
 
 app.use((req, res) => {
     res.status(404);
     //res.send("404");
-    res.render("404", { title: "404 not found" });
+    res.render("404", {
+        title: "404 not found"
+    });
 });
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500);
     //res.send("500");
-    res.render("500", { title: "500 server error" });
+    res.render("500", {
+        title: "500 server error"
+    });
 });
 
 app.listen(8080, "0.0.0.0", () => {
     console.log("Server started on port: 8080");
 });
-
-
-
-
-
