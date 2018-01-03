@@ -5,6 +5,7 @@ console.log("hello");
 $("#btnOn").click(() => {
     console.log("Click-on");
     $("#dlgModal").modal("show");
+
     $.ajax({
         url: '/ctrl',
         type: 'post',
@@ -22,7 +23,8 @@ $("#btnOn").click(() => {
         },
         data: {
             type: "cmd",
-            content: "allon"
+            content: "allon",
+            timestamp: 0,
         }
     });
 

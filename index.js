@@ -84,13 +84,16 @@ app.post("/login", function (req, res) {
     }
 });
 app.post("/ctrl", function (req, res) {
+    console.log("/ctl, req.body:");
     console.log(req.body);
 
-    res.json({
-        name: "try it"
-    });
 
-    mqttBg.sayHello();
+
+    // mqttBg.sayHello();
+    res.json({
+        type: "resp",
+        content: "OK",
+    });
 });
 
 app.use((req, res) => {
