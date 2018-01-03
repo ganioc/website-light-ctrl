@@ -87,13 +87,42 @@ app.post("/ctrl", function (req, res) {
     console.log("/ctl, req.body:");
     console.log(req.body);
 
-
-
-    // mqttBg.sayHello();
-    res.json({
-        type: "resp",
-        content: "OK",
-    });
+    var obj;
+    try {
+        obj = JSON.parse(JSON.stringify(req.body));
+    } catch (e) {
+        console.log(e);
+        rej.json({
+            type: "resp",
+            content: "NOK",
+        });
+        return;
+    }
+    if (obj.type === "cmd" && obj.content === "allon") {
+        mqttBg.allOn((err, data) => {
+            res.json({
+                content:data
+            });
+        });
+    } else if (obj.type === "cmd" && obj.content === "alloff") {
+        mqttBg.allOff((err, data) => {
+            res.json({
+                content:data
+            });
+        });
+    } else if (obj.type === "cmd" && obj.content === "query") {
+        mqttBg.query((err, data) => {
+            res.json({
+                content:data
+            })
+        });
+    } else {
+        console.log("unrecognized cmd:" + obj.type);
+        res.json({
+            type: "resp",
+            content: "NOK",
+        });
+    }
 });
 
 app.use((req, res) => {

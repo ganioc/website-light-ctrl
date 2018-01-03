@@ -19,7 +19,8 @@
     "mosca": "^2.7.0",
     "mqtt": "^2.15.0",
     "popper": "^1.0.1",
-    "popper.js": "^1.12.9"
+    "popper.js": "^1.12.9",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "font-awesome": "^4.7.0"
