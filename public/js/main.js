@@ -129,12 +129,15 @@ function parseQueryData(data) {
                 str += "<span class=\"glyphicon glyphicon-exclamation-sign text-infoglyphicon-bigger\"><\/span>";
             } else if (light.type === 33 && light.online === true) {
                 str += "<span class = \"glyphicon glyphicon-star text-success glyphicon-bigger\"><\/span>";
+                str += (light.leftState === 1) ? ("<span class=\"bg-success\">开</span>") : ("<span class=\"bg-danger\">关</span>");
+                str += "-";
+                str += (light.rightState === 1) ? ("<span class=\"bg-success\">开</span>") : ("<span class=\"bg-danger\">关</span>");
 
             } else if (light.type === 32 && light.online === false) {
                 str += "<span class=\"glyphicon glyphicon-exclamation-sign text-info glyphicon-bigger\"><\/span>";
             } else if (light.type === 32 && light.online === true) {
                 str += "<span class = \"glyphicon glyphicon-star text-success glyphicon-bigger\"><\/span>";
-                str += (light.state === 1) ? ("开") : ("关");
+                str += (light.state === 1) ? ("<span class=\"bg-success\">开</span>") : ("<span class=\"bg-danger\">关</span>");
             }
             str += "</td>";
 
