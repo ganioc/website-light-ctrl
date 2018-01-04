@@ -103,13 +103,57 @@ function parseQueryData(data) {
         return;
     }
 
+    $("#tableBody").html("");
+
     for (var o in obj) {
         console.log("No:" + counter++);
         console.log(obj[o]);
         // to add <tr> inside <tbody>
         // clear 
+        for (var o2 in obj[o]) {
+            var str = "<tr>";
 
-        
+            var light = obj[o][o2];
+            str += "<td>" + light.deviceID;
+            if (light.type === 33) {
+                str += "-D";
+            } else if (light.type === 32) {
+                str += "-S";
+            }
+            str += "</td>";
+
+            // 灯的状态
+            // 是否在网
+            str += "<td>";
+            if (light.type === 33 && light.online === false) {
+                str += "<span class=\"glyphicon glyphicon-exclamation-sign text-info glyphicon-bigger\"></span>";
+            } else if (light.type === 33 && light.online === true) {
+                str += "< span class = \"glyphicon glyphicon-star text-success glyphicon-bigger\"></span>";
+                str += (light.leftState === 1) ? ("开") : ("关");
+                str += "-";
+                str += (light.rightState === 1) ? ("开") : ("关");
+            } else if (light.type === 32 && light.online === false) {
+                str += "<span class=\"glyphicon glyphicon-exclamation-sign text-info glyphicon-bigger\"></span>";
+            } else if (light.type === 32 && light.online === true) {
+                str += "< span class = \"glyphicon glyphicon-star text-success glyphicon-bigger\"></span>";
+                str += (light.state === 1) ? ("开") : ("关");
+            }
+            str += "</td>";
+
+            // 最后一次更新时间
+            var d = new Date(light.onlineLastUpdate);
+            str += "<td>";
+            str += (d.getMonth() + 1) + "-";
+            str += d.getDay() + "-";
+            str += d.getMinutes() + ":";
+            str += d.getSeconds();
+            str += "</td>";
+
+            str += "</tr>";
+            $("#tableBody").append(str);
+        }
+
+
     }
 
 }
