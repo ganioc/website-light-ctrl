@@ -96,7 +96,7 @@ $("#btnQuery").click(() => {
 function parseQueryData(data) {
     var obj;
     try {
-        obj = JSON.parse(data);
+        obj = JSON.parse(data.content);
     } catch (e) {
         console.log(e);
         console.log("wrong query data format");
