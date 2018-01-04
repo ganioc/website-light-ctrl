@@ -126,16 +126,14 @@ function parseQueryData(data) {
             // 是否在网
             str += "<td>";
             if (light.type === 33 && light.online === false) {
-                str += "<span class=\"glyphicon glyphicon-exclamation-sign text-info glyphicon-bigger\"></span>";
+                str += "<span class=\"glyphicon glyphicon-exclamation-sign text-infoglyphicon-bigger\"><\/span>";
             } else if (light.type === 33 && light.online === true) {
-                str += "< span class = \"glyphicon glyphicon-star text-success glyphicon-bigger\"></span>";
-                str += (light.leftState === 1) ? ("开") : ("关");
-                str += "-";
-                str += (light.rightState === 1) ? ("开") : ("关");
+                str += "<span class = \"glyphicon glyphicon-star text-success glyphicon-bigger\"><\/span>";
+
             } else if (light.type === 32 && light.online === false) {
-                str += "<span class=\"glyphicon glyphicon-exclamation-sign text-info glyphicon-bigger\"></span>";
+                str += "<span class=\"glyphicon glyphicon-exclamation-sign text-info glyphicon-bigger\"><\/span>";
             } else if (light.type === 32 && light.online === true) {
-                str += "< span class = \"glyphicon glyphicon-star text-success glyphicon-bigger\"></span>";
+                str += "<span class = \"glyphicon glyphicon-star text-success glyphicon-bigger\"><\/span>";
                 str += (light.state === 1) ? ("开") : ("关");
             }
             str += "</td>";
@@ -145,15 +143,12 @@ function parseQueryData(data) {
             str += "<td>";
             str += (d.getMonth() + 1) + "-";
             str += d.getDay() + "-";
-            str += d.getMinutes() + ":";
-            str += d.getSeconds();
+            str += d.getHours() + ":";
+            str += d.getMinutes();
             str += "</td>";
 
             str += "</tr>";
             $("#tableBody").append(str);
         }
-
-
     }
-
 }
