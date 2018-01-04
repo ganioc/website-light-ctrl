@@ -74,6 +74,7 @@ $("#btnQuery").click(() => {
         success: function (data) {
             console.log("btquery got response:");
             console.log(data);
+            parseQueryData(data);
         },
         error: function (err) {
             console.log("query error");
@@ -91,3 +92,19 @@ $("#btnQuery").click(() => {
         }
     });
 });
+
+function parseQueryData(data) {
+    var obj;
+    try {
+        obj = JSON.parse(data);
+    } catch (e) {
+        console.log(e);
+        console.log("wrong query data format");
+        return;
+    }
+
+    for (var o in obj) {
+        console.log(obj[o]);
+    }
+
+}
