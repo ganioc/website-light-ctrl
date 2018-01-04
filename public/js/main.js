@@ -94,7 +94,7 @@ $("#btnQuery").click(() => {
 });
 
 function parseQueryData(data) {
-    var obj;
+    var obj, counter = 0;
     try {
         obj = JSON.parse(data.content);
     } catch (e) {
@@ -104,7 +104,12 @@ function parseQueryData(data) {
     }
 
     for (var o in obj) {
+        console.log("No:" + counter++);
         console.log(obj[o]);
+        // to add <tr> inside <tbody>
+        // clear 
+
+        
     }
 
 }

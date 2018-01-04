@@ -34,11 +34,11 @@ app.get("/", (req, res) => {
     //console.log(req.session.username);
     if (req.session.normalId === undefined) {
         res.render("home-visitor", {
-            title: "未登录"
+            title: "主页-未登录"
         });
     } else {
         res.render("home", {
-            title: "主页"
+            title: "主页-已登录"
         });
     }
 });
@@ -101,19 +101,19 @@ app.post("/ctrl", function (req, res) {
     if (obj.type === "cmd" && obj.content === "allon") {
         mqttBg.allOn((err, data) => {
             res.json({
-                content:data
+                content: data
             });
         });
     } else if (obj.type === "cmd" && obj.content === "alloff") {
         mqttBg.allOff((err, data) => {
             res.json({
-                content:data
+                content: data
             });
         });
     } else if (obj.type === "cmd" && obj.content === "query") {
         mqttBg.query((err, data) => {
             res.json({
-                content:data
+                content: data
             })
         });
     } else {
