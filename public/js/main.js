@@ -139,6 +139,8 @@ function parseQueryData(data) {
                 str += "<span class=\"glyphicon glyphicon-exclamation-sign text-info glyphicon-bigger\"><\/span>";
             } else if (light.type === 32 && light.online === true) {
                 str += (light.state === 1) ? ("<span class=\"glyphicon glyphicon-star text-success glyphicon-big\"></span>") : ("<span class=\"glyphicon glyphicon-star text-danger glyphicon-big\"></span>");
+            } else {
+                continue;
             }
             str += "</td>";
 
